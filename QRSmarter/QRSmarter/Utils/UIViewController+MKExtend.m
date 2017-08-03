@@ -12,12 +12,17 @@
 
 #pragma mark -
 
-- (void)handleQRType:(NSString *)type withResult:(NSString *)result
+- (void)handleQRType:(NSString *)type
+          withResult:(NSString *)result
+      withCompletion:(void(^)(void))completion
 {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:type
                                                                      message:result
                                                               preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        if (completion) {
+            completion();
+        }
     }];
     [alertVC addAction:actionCancel];
     
@@ -27,12 +32,18 @@
         if (url && [app canOpenURL:url]) {
             [app openURL:url];
         }
+        if (completion) {
+            completion();
+        }
     }];
     [alertVC addAction:actionSafari];
     
     UIAlertAction *actionCopy = [UIAlertAction actionWithTitle:@"复制" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         UIPasteboard *pb = [UIPasteboard generalPasteboard];
         [pb setString:result];
+        if (completion) {
+            completion();
+        }
     }];
     [alertVC addAction:actionCopy];
     

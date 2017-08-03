@@ -10,6 +10,8 @@
 
 @interface UIViewController (MKExtend)
 
-- (void)handleQRType:(NSString *)type withResult:(NSString *)result;
+- (void)handleQRType:(NSString *)type
+          withResult:(NSString *)result
+      withCompletion:(void(^)(void))completion;
 
 @end

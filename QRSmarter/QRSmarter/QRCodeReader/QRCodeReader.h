@@ -51,8 +51,6 @@
  *
  *	@param 	interestRect 	扫描区域的屏幕坐标
  *
- *	@return	N/A
- *
  *	Created by Mark on 2015-11-20 14:22
  */
 - (void)setInterstRect:(CGRect)interestRect;

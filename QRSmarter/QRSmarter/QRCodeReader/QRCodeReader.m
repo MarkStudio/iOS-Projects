@@ -202,10 +202,11 @@
     CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
     CGFloat screenWidth  = [[UIScreen mainScreen] bounds].size.width;
     // 扫描区设置，按比例，右上角为原点，X,Y,W,H对调
-    [_metadataOutput setRectOfInterest:CGRectMake (CGRectGetMinY(interestRect)/screenHeight,
-                                                   ((screenWidth-CGRectGetWidth(interestRect))/2)/screenWidth ,
-                                                   CGRectGetHeight(interestRect)/screenHeight,
-                                                   CGRectGetWidth(interestRect)/screenWidth)];
+    CGRect rect = CGRectMake (CGRectGetMinY(interestRect)/(screenHeight-49-20),
+                                      ((screenWidth-CGRectGetWidth(interestRect))/2)/screenWidth ,
+                                      CGRectGetHeight(interestRect)/(screenHeight-49-20),
+                                      CGRectGetWidth(interestRect)/screenWidth);
+    [_metadataOutput setRectOfInterest:rect];
 }//
 
 - (void)toggleTorch:(id)sender

@@ -124,12 +124,12 @@
     if (nil == arrHistories) {
         arrHistories = [NSMutableArray array];
     }
-    [arrHistories addObject:dicParams];
+    [arrHistories insertObject:dicParams atIndex:0];
     [arrHistories writeToFile:filePath atomically:YES];
     
-    [reader handleQRType:type withResult:result];
-    
-    [reader startScanning];
+    [reader handleQRType:type withResult:result withCompletion:^{
+        [reader startScanning];
+    }];
 }//
 
 @end

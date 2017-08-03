@@ -10,6 +10,10 @@
 
 @interface HistoryManager : NSObject
 
+@property (nonatomic, strong) NSMutableArray *arrHistories;
+
+#pragma mark -
+
 + (instancetype)sharedInstance;
 
 @end

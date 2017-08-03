@@ -72,7 +72,8 @@
 
 #pragma mark - Creating and Inializing QRCodeReader Controllers
 
-- (id)initWithCancelTitle:(NSString *)cancelTitle {
+- (id)initWithCancelTitle:(NSString *)cancelTitle
+{
     return [self initWithCancelTitle:cancelTitle metadataObjectTypes:@[AVMetadataObjectTypeQRCode]];
 }
 

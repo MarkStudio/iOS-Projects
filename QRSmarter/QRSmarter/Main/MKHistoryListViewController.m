@@ -7,14 +7,14 @@
 //
 
 #import "MKHistoryListViewController.h"
-#import "NSFileManager+MKSExtend.h"
+#import "HistoryManager.h"
 #import "UIViewController+MKExtend.h"
 
 static CGFloat kCellHeight = 60;
 
 @interface MKHistoryListViewController ()
 
-@property (nonatomic, strong) NSMutableArray *arrHistories;
+@property (nonatomic, strong) HistoryManager *historyMgr;
 
 @end
 
@@ -26,38 +26,28 @@ static CGFloat kCellHeight = 60;
 {
     self = [super initWithStyle:style];
     if (self) {
+        _historyMgr = [HistoryManager sharedInstance];
     }
     
     return self;
-}//
-
-- (void)initHistories
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *filePath = [fileManager historyDirectory];
-    NSMutableArray *arr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
-    _arrHistories = arr;
-    [self.tableView reloadData];
 }//
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView hideExtraCellLine];
-    
-    [self initHistories];
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _arrHistories.count;
+    return _historyMgr.arrHistories.count;
 }//
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,7 +58,7 @@ static CGFloat kCellHeight = 60;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:identifer];
     }
-    NSDictionary *dicInfo = _arrHistories[indexPath.row];
+    NSDictionary *dicInfo = _historyMgr.arrHistories[indexPath.row];
     [cell.textLabel setText:dicInfo[@"result"]];
     
     return cell;
@@ -84,8 +74,10 @@ static CGFloat kCellHeight = 60;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSDictionary *dicInfo = _arrHistories[indexPath.row];
-    [self handleQRType:dicInfo[@"type"] withResult:dicInfo[@"result"]];
+    NSDictionary *dicInfo = _historyMgr.arrHistories[indexPath.row];
+    [self handleQRType:dicInfo[@"type"]
+            withResult:dicInfo[@"result"]
+        withCompletion:nil];
 }//
 
 @end

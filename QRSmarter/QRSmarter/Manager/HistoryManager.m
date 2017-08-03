@@ -7,6 +7,7 @@
 //
 
 #import "HistoryManager.h"
+#import "NSFileManager+MKSExtend.h"
 
 @implementation HistoryManager
 
@@ -20,5 +21,25 @@
     
     return sharedInstance;
 }
+
+#pragma mark -
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self initHistories];
+    }
+    
+    return self;
+}//
+
+- (void)initHistories
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *filePath = [fileManager historyDirectory];
+    NSMutableArray *arr = [[NSMutableArray alloc] initWithContentsOfFile:filePath];
+    _arrHistories = arr;
+}//
 
 @end

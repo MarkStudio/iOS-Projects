@@ -210,6 +210,9 @@ static CGFloat kTipTopPadding = 15.0;
     // comment by mark 17-01-11
     [self.codeReader setInterstRect:_scanScopeView.frame];
     
+#warning YOUNG MARK
+//    [_scanScopeView setBackgroundColor:[UIColor redColor]];
+    
     // 无网状态下的blur view，add by mark 17-02-22
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
