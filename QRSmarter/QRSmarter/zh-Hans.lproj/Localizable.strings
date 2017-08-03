@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  QRSmarter
+
+  Created by VS-Mark on 2/8/2017.
+  Copyright © 2017 MarkStudio. All rights reserved.
+*/
+
+"TipScanQRCode" = "将二维码/条码放入框内，即可自动扫描";
