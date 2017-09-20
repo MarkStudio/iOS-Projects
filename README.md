@@ -6,7 +6,8 @@ iOS QR Code Scanner
 #### int a 
 int b
 
-
+char J
+int D =a+b
 
 ####
 ####
